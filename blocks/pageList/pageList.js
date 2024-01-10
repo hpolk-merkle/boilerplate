@@ -7,15 +7,16 @@ async function getJsonList(href) {
 
   console.log('=====JSON=====> {} ', jsonData);
 
-  var list = document.createElement('ul');
+  const list = document.createElement('ul');
 
-  for (var index in jsonData) {
-    var page = jsonData[index].Page;
-    var title = jsonData[index].Title;
+  // eslint-disable-next-line guard-for-in,no-restricted-syntax
+  for (const index in jsonData) {
+    const page = jsonData[index].Page;
+    const title = jsonData[index].Title;
     console.log(page);
     console.log(title);
-    let listElement = document.createElement('li');
-    let anchorElement = document.createElement('a');
+    const listElement = document.createElement('li');
+    const anchorElement = document.createElement('a');
     anchorElement.innerText = title;
     anchorElement.href = page;
     listElement.append(anchorElement);
@@ -25,14 +26,11 @@ async function getJsonList(href) {
   return list;
 }
 export default async function decorate(block) {
-  // [...block.children].forEach((row) => {
-  // console.log(row);
   const sheetElement = block.querySelector('a[href$=".json"]');
-  var parentDiv = document.createElement('div');
+  const parentDiv = document.createElement('div');
   console.log(sheetElement);
-  var listElement = await getJsonList(sheetElement.href);
+  const listElement = await getJsonList(sheetElement.href);
   parentDiv.append(listElement);
 
   sheetElement.replaceWith(listElement);
-  // });
 }
