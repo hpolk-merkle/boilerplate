@@ -18,7 +18,7 @@ async function getJsonList(href) {
     const listElement = document.createElement('li');
     const anchorElement = document.createElement('a');
     anchorElement.innerText = title;
-    anchorElement.href = page;
+    anchorElement.href = window.origin + page;
     listElement.append(anchorElement);
     list.append(listElement);
   }
